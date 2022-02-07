@@ -6,9 +6,9 @@ export default makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     gap: "15px",
-    // maxWidth: "300px",
   },
   paper: {
     marginTop: "20px",
+    width: "600px",
   },
 }));

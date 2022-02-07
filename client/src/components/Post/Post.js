@@ -7,6 +7,7 @@ import {
   CardMedia,
   Button,
   Typography,
+  Grid,
 } from "@material-ui/core/";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -28,12 +29,33 @@ const Post = ({ post, setCurrentId }) => {
           {moment(post.createdAt).fromNow()}
         </Typography>
       </CardContent>
-      <CardMedia
-        component="img"
-        alt="weapon"
-        height="160"
-        image="https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/4/47/Emerald_Steel_Strikers_Icon.png"
-      />
+      <Grid container style={{ justifyContent: "center" }}>
+        <Grid item>
+          <CardMedia
+            component="img"
+            alt="weapon"
+            height="140"
+            image="https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/4/47/Emerald_Steel_Strikers_Icon.png"
+          />
+        </Grid>
+        <Grid item>
+          <CardMedia
+            component="img"
+            alt="weapon"
+            height="140"
+            image="https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/4/47/Emerald_Steel_Strikers_Icon.png"
+          />
+        </Grid>
+        <Grid item>
+          <CardMedia
+            component="img"
+            alt="weapon"
+            height="140"
+            image="https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/4/47/Emerald_Steel_Strikers_Icon.png"
+          />
+        </Grid>
+      </Grid>
+
       <Typography variant="h5" align="center">
         {post.title}
       </Typography>

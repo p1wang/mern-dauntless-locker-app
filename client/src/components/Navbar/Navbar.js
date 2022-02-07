@@ -6,20 +6,29 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Avatar } from "@material-ui/core";
 
 export default function Navbar() {
   return (
-    <Box sx={{ flexGrow: 1 }} mb={6}>
+    <Box style={{ marginBottom: "120px" }} mb={6}>
       <AppBar
-        position="static"
-        sx={{ padding: "15px" }}
-        style={{ backgroundColor: "#2f93d6" }}
+        position="fixed"
+        style={{
+          backgroundColor: "#2f93d6",
+          padding: "15px",
+        }}
       >
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" component="div" style={{ flexGrow: 1 }}>
             Dauntless Locker
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Typography style={{ padding: "10px" }}>bltz</Typography>
+          <Avatar
+            alt="pfp"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2CfEmdL53GXnQv3ApXBqBbWn6y5pXoiCeYQ&usqp=CAU"
+            style={{ margin: "10px" }}
+          />
+          <Button color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
     </Box>

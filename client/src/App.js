@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import Auth from "./components/Auth/Auth";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
-import Posts from "./components/Posts/Posts";
 import { getPosts } from "./actions/posts";
 
 const App = () => {

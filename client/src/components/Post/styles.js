@@ -7,6 +7,6 @@ export default makeStyles({
     flexDirection: "column",
     justifyContent: "space-between",
     height: "400px",
-    width: "350px",
+    width: "500px",
   },
 });

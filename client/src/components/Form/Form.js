@@ -26,7 +26,7 @@ const Form = () => {
 
   return (
     <Paper elevation={6} className={classes.paper}>
-      <Box p={2}>
+      <Box style={{ padding: "20px" }}>
         <form
           className={classes.form}
           autoComplete="off"

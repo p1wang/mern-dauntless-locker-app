@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Box,
   Card,
   CardActions,
   CardContent,
@@ -21,41 +22,33 @@ const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
-      <CardMedia
-        className={classes.media}
-        image={
-          post.selectedFile ||
-          "https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
-        }
-        title={post.title}
-      />
-      <div className={classes.overlay}>
-        <Typography variant="h6">{post.name}</Typography>
-        <Typography variant="body2">
+    <Card raised className={classes.card}>
+      <CardContent>
+        <Typography variant="body2" className={classes.moment}>
           {moment(post.createdAt).fromNow()}
         </Typography>
-      </div>
-
-      <div className={classes.details}>
-        <Typography variant="body2" color="textSecondary" component="h2">
-          {post.tags.map((tag) => `#${tag} `)}
-        </Typography>
-      </div>
-      <Typography
-        className={classes.title}
-        gutterBottom
-        variant="h5"
-        component="h2"
-      >
+      </CardContent>
+      <CardMedia
+        component="img"
+        alt="weapon"
+        height="160"
+        image="https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/4/47/Emerald_Steel_Strikers_Icon.png"
+      />
+      <Typography variant="h5" align="center">
         {post.title}
       </Typography>
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography gutterBottom variant="body2">
           {post.message}
         </Typography>
+        <Typography variant="body2" className={classes.tags}>
+          {post.tags.map((tag) => `#${tag} `)}
+        </Typography>
       </CardContent>
-      <CardActions className={classes.cardActions}></CardActions>
+      <CardActions>
+        <Button size="small">Share</Button>
+        <Button size="small">Learn More</Button>
+      </CardActions>
     </Card>
   );
 };

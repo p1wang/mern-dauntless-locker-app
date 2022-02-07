@@ -34,13 +34,14 @@ const Form = () => {
           onSubmit={handleOnSubmit}
         >
           <Typography variant="h6" align="center">
-            New memory
+            New builds
           </Typography>
           <TextField
             name="title"
             variant="outlined"
             label="Title"
             fullWidth
+            inputProps={{ maxLength: "50" }}
             value={postData.title}
             onChange={(e) =>
               setPostData({ ...postData, title: e.target.value })
@@ -53,6 +54,7 @@ const Form = () => {
             fullWidth
             multiline
             rows={4}
+            inputProps={{ maxLength: "200" }}
             value={postData.message}
             onChange={(e) =>
               setPostData({ ...postData, message: e.target.value })
@@ -63,6 +65,7 @@ const Form = () => {
             variant="outlined"
             label="Tags (coma separated)"
             fullWidth
+            inputProps={{ maxLength: "100" }}
             value={postData.tags}
             onChange={(e) =>
               setPostData({ ...postData, tags: e.target.value.split(",") })

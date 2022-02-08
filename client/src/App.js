@@ -5,15 +5,8 @@ import { useDispatch } from "react-redux";
 import Auth from "./components/Auth/Auth";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
-import { getPosts } from "./actions/posts";
 
 const App = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
-
   return (
     <BrowserRouter>
       <Navbar />

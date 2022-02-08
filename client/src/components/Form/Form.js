@@ -1,27 +1,37 @@
 import { Button, Paper, TextField, Typography, Box } from "@material-ui/core";
-import React, { useState } from "react";
-import FileBase64 from "react-file-base64";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import useStyles from "./styles";
 import { createPost } from "../../actions/posts";
 
-const Form = () => {
+const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [postData, setPostData] = useState({
-    creator: "",
     title: "",
+    message: "",
     tags: "",
+    url: "",
   });
 
+  const post = useSelector((state) =>
+    currentId ? state.posts.find((message) => message._id === currentId) : null
+  );
+
+  useEffect(() => {
+    if (post) setPostData(post);
+  }, [post]);
+
   const clear = () => {
-    setPostData({ title: "", message: "", tags: "" });
+    setCurrentId(0);
+    setPostData({ title: "", message: "", tags: "", url: "" });
   };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     dispatch(createPost(postData));
+    // clear();
   };
 
   return (
@@ -70,6 +80,15 @@ const Form = () => {
             onChange={(e) =>
               setPostData({ ...postData, tags: e.target.value.split(",") })
             }
+          />
+          <TextField
+            name="url"
+            variant="outlined"
+            label="URL to the build"
+            fullWidth
+            inputProps={{ maxLength: "100" }}
+            value={postData.url}
+            onChange={(e) => setPostData({ ...postData, url: e.target.value })}
           />
 
           <Button

@@ -1,12 +1,20 @@
 import { Container, Grid, Grow } from "@material-ui/core";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
+import { getPosts } from "../../actions/posts";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
 import useStyles from "./styles";
 
 const Home = () => {
   const classes = useStyles();
+  const [currentId, setCurrentId] = useState(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [currentId, dispatch]);
 
   return (
     <Container maxWidth={false}>
@@ -20,10 +28,10 @@ const Home = () => {
         }}
       >
         <Grid item xs={12}>
-          <Posts />
+          <Posts setCurrentId={setCurrentId} />
         </Grid>
         <Grid item>
-          <Form />
+          <Form currentId={currentId} setCurrentId={setCurrentId} />
         </Grid>
       </Grid>
     </Container>

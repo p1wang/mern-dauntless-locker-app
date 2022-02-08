@@ -16,9 +16,9 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 import { useDispatch } from "react-redux";
 import moment from "moment";
-
 import useStyles from "./styles";
 import { deletePost } from "../../actions/posts";
+import Link from "@material-ui/core/Link";
 
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
@@ -71,7 +71,9 @@ const Post = ({ post, setCurrentId }) => {
       </CardContent>
       <CardActions>
         <Container style={{ display: "flex", justifyContent: "space-around" }}>
-          <Button size="small">Copy</Button>
+          <Button size="small" component={Link} href={post.url} target="_blank">
+            Open
+          </Button>
           <Button size="small" style={{ marginRight: "auto" }}>
             Like
           </Button>

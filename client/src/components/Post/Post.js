@@ -17,12 +17,42 @@ import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import useStyles from "./styles";
-import { deletePost } from "../../actions/posts";
+import { deletePost, likePost } from "../../actions/posts";
 import Link from "@material-ui/core/Link";
 
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const user = JSON.parse(localStorage.getItem("profile"));
+
+  const Likes = () => {
+    if (post.likes?.length > 0) {
+      return post.likes.find(
+        (like) => like === (user?.result?.googleId || user?.result?._id)
+      ) ? (
+        <>
+          <ThumbUpAltIcon fontSize="small" />
+          &nbsp;
+          {post.likes.length > 2
+            ? `You and ${post.likes.length - 1} others`
+            : `${post.likes.length} like${post.likes.length > 1 ? "s" : ""}`}
+        </>
+      ) : (
+        <>
+          <ThumbUpAltOutlined fontSize="small" />
+          &nbsp;{post.likes.length}
+          {post.likes.length === 1 ? "Like" : "Likes"}
+        </>
+      );
+    }
+
+    return (
+      <>
+        <ThumbUpAltOutlined fontSize="small" />
+        &nbsp;Like
+      </>
+    );
+  };
 
   return (
     <Card raised className={classes.card}>
@@ -74,8 +104,13 @@ const Post = ({ post, setCurrentId }) => {
           <Button size="small" component={Link} href={post.url} target="_blank">
             Open
           </Button>
-          <Button size="small" style={{ marginRight: "auto" }}>
-            Like
+          <Button
+            size="small"
+            style={{ marginRight: "auto" }}
+            disabled={!user?.result}
+            onClick={() => dispatch(likePost(post._id))}
+          >
+            <Likes />
           </Button>
           <Button size="small" onClick={() => dispatch(deletePost(post._id))}>
             Delete

@@ -43,7 +43,7 @@ const Navbar = () => {
           variant="h2"
           align="center"
         >
-          Memories
+          Dauntless Locker
         </Typography>
       </div>
       <Toolbar className={classes.toolbar}>

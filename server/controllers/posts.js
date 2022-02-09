@@ -1,6 +1,7 @@
 import PostMessage from "../models/postMessage.js";
 import mongoose from "mongoose";
 
+// get post
 export const getPosts = async (req, res) => {
   try {
     const postMessage = await PostMessage.find();
@@ -11,17 +12,26 @@ export const getPosts = async (req, res) => {
   }
 };
 
+// create post
 export const createPost = async (req, res) => {
   const post = req.body;
 
-  const newPost = new PostMessage(post);
+  const newPostMessage = new PostMessage({
+    ...post,
+    creator: req.userId,
+    createdAt: new Date().toISOString(),
+  });
+
   try {
-    await newPost.save();
-    res.status(201).json(newPost);
+    await newPostMessage.save();
+
+    res.status(201).json(newPostMessage);
   } catch (error) {
-    console.log(error);
+    res.status(409).json({ message: error.message });
   }
 };
+
+// delete post
 
 export const deletePost = async (req, res) => {
   const { id } = req.params;
@@ -34,6 +44,7 @@ export const deletePost = async (req, res) => {
   res.json({ message: "Post deleted successfully." });
 };
 
+// like post
 export const likePost = async (req, res) => {
   const { id } = req.params;
 

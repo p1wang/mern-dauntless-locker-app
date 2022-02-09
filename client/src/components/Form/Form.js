@@ -8,6 +8,7 @@ import { createPost } from "../../actions/posts";
 const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("profile"));
   const [postData, setPostData] = useState({
     title: "",
     message: "",

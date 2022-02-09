@@ -112,9 +112,12 @@ const Post = ({ post, setCurrentId }) => {
           >
             <Likes />
           </Button>
-          <Button size="small" onClick={() => dispatch(deletePost(post._id))}>
-            Delete
-          </Button>
+          {(user?.result?.googleId === post?.creator ||
+            user?.result?._id === post?.creator) && (
+            <Button size="small" onClick={() => dispatch(deletePost(post._id))}>
+              Delete
+            </Button>
+          )}
         </Container>
       </CardActions>
     </Card>

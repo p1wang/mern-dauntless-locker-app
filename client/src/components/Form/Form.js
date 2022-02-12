@@ -32,8 +32,18 @@ const Form = ({ currentId, setCurrentId }) => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     dispatch(createPost(postData));
-    // clear();
+    clear();
   };
+
+  if (!user?.result?.name) {
+    return (
+      <div>
+        <Typography variant="h6" align="center">
+          Please Sign In to create your own builds
+        </Typography>
+      </div>
+    );
+  }
 
   return (
     <Paper elevation={6} className={classes.paper}>

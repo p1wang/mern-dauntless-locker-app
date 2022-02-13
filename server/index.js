@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/user.js";
+import imageRoutes from "./routes/image.js";
 
 const app = express();
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(cors());
 
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
+app.use("/image", imageRoutes);
 
 const PORT = process.env.PORT || 5001;
 

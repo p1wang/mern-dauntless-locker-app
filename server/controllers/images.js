@@ -6,8 +6,7 @@ import puppeteer from "puppeteer";
 
 export const getImage = async (req, res) => {
   const browser = await puppeteer.launch({
-    headless: false,
-    defaultViewport: false,
+    headless: true,
   });
 
   const page = await browser.newPage();
@@ -17,7 +16,11 @@ export const getImage = async (req, res) => {
 
   const imgURL = await page.$eval(".item.no-cells img", (img) => img.src);
 
-  res.json({ message: imgURL });
+  // res.json({ message: typeof imgURL });
+
+  res.status(200).json(imgURL);
+
+  // console.log(imgURL);
 
   await browser.close();
 };

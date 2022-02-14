@@ -6,6 +6,7 @@ import {
   LIKE,
 } from "../constants/actionTypes";
 
+// state for posts is 
 const posts = (posts = [], action) => {
   switch (action.type) {
     case FETCH_ALL:

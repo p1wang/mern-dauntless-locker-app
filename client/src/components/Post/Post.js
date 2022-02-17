@@ -26,7 +26,6 @@ const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem("profile"));
-  const images = useSelector((state) => state.images); //getting current state of images from reducers => store
 
   const Likes = () => {
     if (post.likes?.length > 0) {
@@ -69,24 +68,24 @@ const Post = ({ post, setCurrentId }) => {
           <CardMedia
             component="img"
             alt="weapon"
-            height="140"
-            image={images[0]}
+            image={post.imageURLs[0]}
+            style={{ height: 140, width: 140 }}
           />
         </Grid>
         <Grid item>
           <CardMedia
             component="img"
             alt="weapon"
-            height="140"
-            image={images[1]}
+            style={{ height: 140, width: 140 }}
+            image={post.imageURLs[1]}
           />
         </Grid>
         <Grid item>
           <CardMedia
             component="img"
             alt="weapon"
-            height="140"
-            image={images[2]}
+            style={{ height: 140, width: 140 }}
+            image={post.imageURLs[2]}
           />
         </Grid>
       </Grid>

@@ -29,6 +29,7 @@ const Form = ({ currentId, setCurrentId }) => {
     setPostData({ title: "", message: "", tags: "", url: "" });
   };
 
+  // submit
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     dispatch(createPost(postData));

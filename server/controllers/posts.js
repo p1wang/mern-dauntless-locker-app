@@ -1,6 +1,28 @@
 import PostMessage from "../models/postMessage.js";
 import mongoose from "mongoose";
 
+import puppeteer from "puppeteer";
+
+export const getImageURLs = async (url) => {
+  const browser = await puppeteer.launch({
+    headless: true,
+  });
+
+  const page = await browser.newPage();
+
+  await page.goto(url);
+
+  const imageURLs = await page.$$eval("img", (anchors) =>
+    [].map.call(anchors, (img) => img.src)
+  );
+
+  const images = [imageURLs[3], imageURLs[1], imageURLs[9]];
+
+  await browser.close();
+
+  return images;
+};
+
 // get post
 export const getPosts = async (req, res) => {
   try {
@@ -15,9 +37,11 @@ export const getPosts = async (req, res) => {
 // create post
 export const createPost = async (req, res) => {
   const post = req.body;
-
+  const urls = await getImageURLs(post.url);
+  console.log(`urls are: ${urls}`);
   const newPostMessage = new PostMessage({
     ...post,
+    imageURLs: urls,
     creator: req.userId,
     createdAt: new Date().toISOString(),
   });

@@ -4,14 +4,18 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Post from "../Post/Post";
 import useStyles from "./styles";
-import { getImages } from "../../actions/images";
+import { getImageURLs } from "../../actions/images";
 
 const Posts = ({ setCurrentId }) => {
   const posts = useSelector((state) => state.posts);
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  dispatch(getImages());
+  dispatch(
+    getImageURLs({
+      url: "https://www.dauntless-builder.com/b/bMfLT0ZUoC2yT7LfYUWtxTmBCpeioCmMsZjcqC11UWCRCPjsYAtWCoLIBFKkUm",
+    })
+  );
 
   return !posts.length ? (
     <CircularProgress />

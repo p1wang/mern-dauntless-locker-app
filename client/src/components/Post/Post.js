@@ -16,18 +16,17 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 import { useDispatch } from "react-redux";
 import moment from "moment";
+import { useSelector } from "react-redux";
+import Link from "@material-ui/core/Link";
+
 import useStyles from "./styles";
 import { deletePost, likePost } from "../../actions/posts";
-import { useSelector } from "react-redux";
-
-import Link from "@material-ui/core/Link";
 
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem("profile"));
-  const images = useSelector((state) => state.images);
-
+  const images = useSelector((state) => state.images); //getting current state of images from reducers => store
 
   const Likes = () => {
     if (post.likes?.length > 0) {
@@ -71,9 +70,6 @@ const Post = ({ post, setCurrentId }) => {
             component="img"
             alt="weapon"
             height="140"
-            // image={
-            //   "https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/9/95/Skarn%27s_Smashers_Icon.png"
-            // }
             image={images[0]}
           />
         </Grid>
@@ -82,7 +78,7 @@ const Post = ({ post, setCurrentId }) => {
             component="img"
             alt="weapon"
             height="140"
-            image="https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/0/0e/Icon_omnicell_darkness.png"
+            image={images[1]}
           />
         </Grid>
         <Grid item>
@@ -90,7 +86,7 @@ const Post = ({ post, setCurrentId }) => {
             component="img"
             alt="weapon"
             height="140"
-            image="https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/3/30/Pangar%27s_Shine_Icon_001.png"
+            image={images[2]}
           />
         </Grid>
       </Grid>

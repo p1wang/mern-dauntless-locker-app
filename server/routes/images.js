@@ -4,6 +4,6 @@ import { getImage } from "../controllers/images.js";
 
 const router = express.Router();
 
-router.get("/", getImage);
+router.post("/", getImage);
 
 export default router;

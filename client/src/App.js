@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 import Auth from "./components/Auth/Auth";
 import Home from "./components/Home/Home";

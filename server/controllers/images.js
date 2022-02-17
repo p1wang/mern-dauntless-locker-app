@@ -1,7 +1,7 @@
 import puppeteer from "puppeteer";
 
 // export const getImage = async (req, res) => {
-//   res.json({ message: "Hello!" });
+//   res.json([{ message: "Hello!" }, { test: "lol" }]);
 // };
 
 export const getImage = async (req, res) => {
@@ -10,17 +10,35 @@ export const getImage = async (req, res) => {
   });
 
   const page = await browser.newPage();
-  await page.goto(
-    "https://www.dauntless-builder.com/b/YwfzTbEUgCRjuJgCPUYtKTZQf27fJCNLCypc0C66UmC0Cwes05cxCrEuwFM7CX"
+
+  await page.goto(req.body.url);
+
+  // console.log(req.body.url);
+  // await page.goto(
+  //   "https://www.dauntless-builder.com/b/bMfLT0ZUoC2yT7LfYUWtxTmBCpeioCmMsZjcqC11UWCRCPjsYAtWCoLIBFKkUm"
+  // );
+
+  var images = [];
+
+  const omnicellImageURL = await page.$eval(
+    "#app > div > div.card > div.columns > div.column.is-two-thirds.build-column > div:nth-child(1) > div.item-wrapper > div > div.LazyLoad.is-visible.image-icon-wrapper > img",
+    (img) => img.src
   );
+  images.push(omnicellImageURL);
 
-  const imgURL = await page.$eval(".item.no-cells img", (img) => img.src);
+  const weaponImageURL = await page.$eval(
+    "#app > div > div.card > div.columns > div.column.is-two-thirds.build-column > div:nth-child(2) > div > div.item > div.LazyLoad.is-visible.image-icon-wrapper > img",
+    (img) => img.src
+  );
+  images.push(weaponImageURL);
 
-  // res.json({ message: typeof imgURL });
+  const lanternImageURL = await page.$eval(
+    "#app > div > div.card > div.columns > div.column.is-two-thirds.build-column > div:nth-child(2) > div > div.item > div.LazyLoad.is-visible.image-icon-wrapper > img",
+    (img) => img.src
+  );
+  images.push(lanternImageURL);
 
-  res.status(200).json(imgURL);
-
-  // console.log(imgURL);
+  res.status(200).json(images);
 
   await browser.close();
 };

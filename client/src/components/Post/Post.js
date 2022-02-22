@@ -63,7 +63,11 @@ const Post = ({ post, setCurrentId }) => {
           {moment(post.createdAt).fromNow()}
         </Typography>
       </CardContent>
-      <Grid container style={{ justifyContent: "center" }}>
+
+      <Grid
+        container
+        style={{ justifyContent: "space-around", alignItems: "center" }}
+      >
         <Grid item>
           <CardMedia
             component="img"
@@ -80,13 +84,13 @@ const Post = ({ post, setCurrentId }) => {
             image={post.imageURLs[1]}
           />
         </Grid>
-        <Grid item>
-          <CardMedia
-            component="img"
-            alt="weapon"
-            style={{ height: 140, width: 140 }}
-            image={post.imageURLs[2]}
-          />
+        <Grid item style={{ paddingLeft: "5%" }}>
+          <Typography
+            variant="body2"
+            style={{ textAlign: "center", whiteSpace: "pre-line" }}
+          >
+            {post.perks.map((perk) => `${perk}\n`)}
+          </Typography>
         </Grid>
       </Grid>
 

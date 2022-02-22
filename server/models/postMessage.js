@@ -13,6 +13,7 @@ const postSchema = mongoose.Schema({
     default: new Date(),
   },
   imageURLs: [String],
+  perks: [String],
 });
 
 var PostMessage = mongoose.model("PostMessage", postSchema);

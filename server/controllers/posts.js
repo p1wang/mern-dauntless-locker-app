@@ -3,6 +3,27 @@ import mongoose from "mongoose";
 
 import puppeteer from "puppeteer";
 
+// scrapes text about perks from the page, add to postSchema
+export const getPerks = async (url) => {
+  const browser = await puppeteer.launch({
+    headless: true,
+  });
+
+  const page = await browser.newPage();
+
+  await page.goto(url);
+
+  const perks = await page.$$eval("div.perk-title", (perks) => {
+    return perks.map((perk) => perk.textContent);
+  });
+
+  await browser.close();
+
+  console.log(perks);
+  return perks;
+};
+
+// converts url of the build into an array of multiple image urls
 export const getImageURLs = async (url) => {
   const browser = await puppeteer.launch({
     headless: true,
@@ -38,10 +59,13 @@ export const getPosts = async (req, res) => {
 export const createPost = async (req, res) => {
   const post = req.body;
   const urls = await getImageURLs(post.url);
+  const perks = await getPerks(post.url);
+
   console.log(`urls are: ${urls}`);
   const newPostMessage = new PostMessage({
     ...post,
     imageURLs: urls,
+    perks: perks,
     creator: req.userId,
     createdAt: new Date().toISOString(),
   });

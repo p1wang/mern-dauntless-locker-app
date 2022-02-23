@@ -66,7 +66,10 @@ const Post = ({ post, setCurrentId }) => {
 
       <Grid
         container
-        style={{ justifyContent: "space-around", alignItems: "center" }}
+        style={{
+          justifyContent: "space-around",
+          alignItems: "center",
+        }}
       >
         <Grid item>
           <CardMedia
@@ -84,7 +87,7 @@ const Post = ({ post, setCurrentId }) => {
             image={post.imageURLs[1]}
           />
         </Grid>
-        <Grid item style={{ paddingLeft: "5%" }}>
+        <Grid item style={{ padding: "0 5%" }}>
           <Typography
             variant="body2"
             style={{ textAlign: "center", whiteSpace: "pre-line" }}
@@ -106,25 +109,23 @@ const Post = ({ post, setCurrentId }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Container style={{ display: "flex", justifyContent: "space-around" }}>
-          <Button size="small" component={Link} href={post.url} target="_blank">
-            Open
+        <Button size="small" component={Link} href={post.url} target="_blank">
+          Open
+        </Button>
+        <Button
+          size="small"
+          style={{ marginRight: "auto" }}
+          disabled={!user?.result}
+          onClick={() => dispatch(likePost(post._id))}
+        >
+          <Likes />
+        </Button>
+        {(user?.result?.googleId === post?.creator ||
+          user?.result?._id === post?.creator) && (
+          <Button size="small" onClick={() => dispatch(deletePost(post._id))}>
+            Delete
           </Button>
-          <Button
-            size="small"
-            style={{ marginRight: "auto" }}
-            disabled={!user?.result}
-            onClick={() => dispatch(likePost(post._id))}
-          >
-            <Likes />
-          </Button>
-          {(user?.result?.googleId === post?.creator ||
-            user?.result?._id === post?.creator) && (
-            <Button size="small" onClick={() => dispatch(deletePost(post._id))}>
-              Delete
-            </Button>
-          )}
-        </Container>
+        )}
       </CardActions>
     </Card>
   );

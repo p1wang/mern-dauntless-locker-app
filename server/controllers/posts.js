@@ -59,8 +59,12 @@ export const getPosts = async (req, res) => {
 export const getPostsBySearch = async (req, res) => {
   const { searchQuery } = req.query;
   try {
-    const title = new RegExp(searchQuery, "i");
-    const posts = await PostMessage.find({ title });
+    const posts = await PostMessage.find({
+      $or: [
+        { tags: new RegExp(searchQuery, "i") }, //convert document data into regular expression object
+        { title: new RegExp(searchQuery, "i") },
+      ],
+    });
 
     res.status(200).json(posts);
   } catch (error) {
@@ -71,8 +75,13 @@ export const getPostsBySearch = async (req, res) => {
 // create post
 export const createPost = async (req, res) => {
   const post = req.body;
-  const urls = await getImageURLs(post.url);
-  const perks = await getPerks(post.url);
+  // const urls = await getImageURLs(post.url);
+  // const perks = await getPerks(post.url);
+
+  const [urls, perks] = await Promise.all([
+    getImageURLs(post.url),
+    getPerks(post.url),
+  ]);
 
   console.log(`urls are: ${urls}`);
   const newPostMessage = new PostMessage({

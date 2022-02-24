@@ -13,14 +13,15 @@ const App = () => {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Navigate to="posts" />} />
-        <Route path="/posts" element={<Home />} />
-        <Route path="/posts/search" element={<Home />} />
+        <Route path="/" exact element={<Navigate to="posts" />} />
+        <Route path="/posts" exact element={<Home />} />
         <Route
           path="/auth"
+          exact
           element={!user ? <Auth /> : <Navigate to="/posts" />}
         />
-        <Route path="*" element={<Home />} />
+        <Route path="/posts/search" exact element={<Home />} />
+        <Route path="*" exact element={<Home />} />
       </Routes>
     </BrowserRouter>
   );

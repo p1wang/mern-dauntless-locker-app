@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { getData } from "./api";
 
 import Auth from "./components/Auth/Auth";
 import Home from "./components/Home/Home";
@@ -8,6 +7,8 @@ import Navbar from "./components/Navbar/Navbar";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
+
+  console.log(`the user in local storage is ${user}`);
 
   return (
     <BrowserRouter>

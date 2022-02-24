@@ -5,8 +5,6 @@ import {
   DELETE,
   LIKE,
   FETCH_BY_SEARCH,
-  START_LOADING,
-  END_LOADING,
 } from "../constants/actionTypes";
 import * as api from "../api";
 
@@ -21,12 +19,12 @@ export const getPosts = () => async (dispatch) => {
 };
 
 export const createPost = (post) => async (dispatch) => {
-  dispatch({ type: START_LOADING });
+  // dispatch({ type: START_LOADING });
   try {
     const { data } = await api.createPost(post);
 
     dispatch({ type: CREATE, payload: data });
-    dispatch({ type: END_LOADING });
+    // dispatch({ type: END_LOADING });
   } catch (error) {
     console.log(error);
   }

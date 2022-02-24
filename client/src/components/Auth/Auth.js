@@ -60,7 +60,7 @@ const SignUp = () => {
     const token = res?.tokenId;
 
     try {
-      dispatch({ type: AUTH, data: { result, token } });
+      dispatch({ type: AUTH, payload: { result, token } });
       navigate("/");
       console.log(res);
     } catch (error) {

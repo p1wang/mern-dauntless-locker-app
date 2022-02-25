@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Auth from "./components/Auth/Auth";
 import Home from "./components/Home/Home";
@@ -11,7 +11,7 @@ const App = () => {
   console.log(`the user in local storage is ${user}`);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Navbar />
       <Routes>
         <Route path="/" exact element={<Navigate to="posts" />} />
@@ -19,12 +19,13 @@ const App = () => {
         <Route
           path="/auth"
           exact
-          element={!user ? <Auth /> : <Navigate to="/posts" />}
+          // element={!user ? <Auth /> : <Navigate to="/posts" />}
+          element={<Auth />}
         />
         <Route path="/posts/search" exact element={<Home />} />
         <Route path="*" exact element={<Home />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

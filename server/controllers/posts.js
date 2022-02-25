@@ -1,17 +1,22 @@
 import PostMessage from "../models/postMessage.js";
 import mongoose from "mongoose";
-
 import puppeteer from "puppeteer";
 
 // scrapes text about perks from the page, add to postSchema
 export const getPerks = async (url) => {
   const browser = await puppeteer.launch({
-    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
 
   const page = await browser.newPage();
 
-  await page.goto(url);
+  try {
+    await page.goto(url);
+  } catch (error) {
+    // console.log("the url for perks is not valid");
+    const perks = [];
+    return perks;
+  }
 
   const perks = await page.$$eval("div.perk-title", (perks) => {
     return perks.map((perk) => perk.textContent);
@@ -20,6 +25,7 @@ export const getPerks = async (url) => {
   await browser.close();
 
   console.log(perks);
+
   return perks;
 };
 
@@ -31,7 +37,17 @@ export const getImageURLs = async (url) => {
 
   const page = await browser.newPage();
 
-  await page.goto(url);
+  try {
+    await page.goto(url);
+  } catch (error) {
+    // console.log(error);
+    const images = [
+      "https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/9/9a/All_weapons2.png",
+      "https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/9/9a/All_weapons2.png",
+      "https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/9/9a/All_weapons2.png",
+    ];
+    return images;
+  }
 
   const imageURLs = await page.$$eval("img", (anchors) =>
     [].map.call(anchors, (img) => img.src)
@@ -75,29 +91,26 @@ export const getPostsBySearch = async (req, res) => {
 // create post
 export const createPost = async (req, res) => {
   const post = req.body;
-  // const urls = await getImageURLs(post.url);
-  // const perks = await getPerks(post.url);
-
-  const [urls, perks] = await Promise.all([
-    getImageURLs(post.url),
-    getPerks(post.url),
-  ]);
-
-  console.log(`urls are: ${urls}`);
-  const newPostMessage = new PostMessage({
-    ...post,
-    imageURLs: urls,
-    perks: perks,
-    creator: req.userId,
-    createdAt: new Date().toISOString(),
-  });
 
   try {
+    const [urls, perks] = await Promise.all([
+      getImageURLs(post.url),
+      getPerks(post.url),
+    ]);
+
+    const newPostMessage = new PostMessage({
+      ...post,
+      imageURLs: urls,
+      perks: perks,
+      creator: req.userId,
+      createdAt: new Date().toISOString(),
+    });
+
     await newPostMessage.save();
 
     res.status(201).json(newPostMessage);
   } catch (error) {
-    res.status(409).json({ message: error.message });
+    res.status(409).json({ message: error });
   }
 };
 

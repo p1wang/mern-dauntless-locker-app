@@ -4,7 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
 
-import * as actionType from "../../constants/actionTypes";
+import { LOGOUT } from "../../constants/actionTypes";
 import useStyles from "./styles";
 
 const Navbar = () => {
@@ -15,7 +15,7 @@ const Navbar = () => {
   const classes = useStyles();
 
   const logout = () => {
-    dispatch({ type: actionType.LOGOUT });
+    dispatch({ type: LOGOUT });
 
     navigate("/auth");
 

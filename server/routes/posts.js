@@ -13,6 +13,7 @@ import auth from "../middleware/auth.js";
 
 router.get("/search", getPostsBySearch);
 router.get("/", getPosts);
+
 router.post("/", auth, createPost);
 router.delete("/:id", auth, deletePost);
 router.patch("/:id/likePost", auth, likePost);

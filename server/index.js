@@ -10,9 +10,9 @@ const app = express();
 dotenv.config();
 
 // for testing connecting
-app.get("/", (req, res) => {
-  res.send("Hello to dauntless locker app");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello to dauntless locker app");
+// });
 
 // Each app.use(middleware) is called every time a request is sent to the server.
 app.use(bodyParser.json({ limit: "30mb", extended: true }));

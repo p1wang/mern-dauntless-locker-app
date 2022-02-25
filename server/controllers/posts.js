@@ -4,8 +4,6 @@ import puppeteer from "puppeteer";
 
 // scrapes text about perks from the page, add to postSchema
 export const getPerks = async (url) => {
-  // await page.goto(url);
-
   const browser = await puppeteer.launch({
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
@@ -24,6 +22,7 @@ export const getPerks = async (url) => {
     console.log(perks);
     return perks;
   } catch (error) {
+    await browser.close();
     const perks = [];
     return perks;
   }
@@ -31,8 +30,6 @@ export const getPerks = async (url) => {
 
 // converts url of the build into an array of multiple image urls
 export const getImageURLs = async (url) => {
-  // await page.goto(url);
-
   const browser = await puppeteer.launch({
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
@@ -51,12 +48,12 @@ export const getImageURLs = async (url) => {
     return images;
   } catch (error) {
     console.log(error);
+    await browser.close();
     const images = [
       "https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/9/9a/All_weapons2.png",
       "https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/9/9a/All_weapons2.png",
       "https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/9/9a/All_weapons2.png",
     ];
-    await browser.close();
     return images;
   }
 };
@@ -94,10 +91,13 @@ export const createPost = async (req, res) => {
   const post = req.body;
 
   try {
-    const [urls, perks] = await Promise.all([
-      getImageURLs(post.url),
-      getPerks(post.url),
-    ]);
+    // const [urls, perks] = await Promise.all([
+    //   getImageURLs(post.url),
+    //   getPerks(post.url),
+    // ]);
+
+    const urls = await getImageURLs(post.url);
+    const perks = await getPerks(post.url);
 
     const newPostMessage = new PostMessage({
       ...post,

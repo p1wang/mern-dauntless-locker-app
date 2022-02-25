@@ -4,6 +4,8 @@ import puppeteer from "puppeteer";
 
 // scrapes text about perks from the page, add to postSchema
 export const getPerks = async (url) => {
+  // await page.goto(url);
+
   const browser = await puppeteer.launch({
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
@@ -12,52 +14,51 @@ export const getPerks = async (url) => {
 
   try {
     await page.goto(url);
+
+    const perks = await page.$$eval("div.perk-title", (perks) => {
+      return perks.map((perk) => perk.textContent);
+    });
+
+    await browser.close();
+
+    console.log(perks);
+    return perks;
   } catch (error) {
-    // console.log("the url for perks is not valid");
     const perks = [];
     return perks;
   }
-
-  const perks = await page.$$eval("div.perk-title", (perks) => {
-    return perks.map((perk) => perk.textContent);
-  });
-
-  await browser.close();
-
-  console.log(perks);
-
-  return perks;
 };
 
 // converts url of the build into an array of multiple image urls
 export const getImageURLs = async (url) => {
+  // await page.goto(url);
+
   const browser = await puppeteer.launch({
-    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
 
   const page = await browser.newPage();
 
   try {
     await page.goto(url);
+
+    const imageURLs = await page.$$eval("img", (anchors) =>
+      [].map.call(anchors, (img) => img.src)
+    );
+
+    const images = [imageURLs[3], imageURLs[1], imageURLs[9]];
+    await browser.close();
+    return images;
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     const images = [
       "https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/9/9a/All_weapons2.png",
       "https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/9/9a/All_weapons2.png",
       "https://static.wikia.nocookie.net/dauntless_gamepedia_en/images/9/9a/All_weapons2.png",
     ];
+    await browser.close();
     return images;
   }
-
-  const imageURLs = await page.$$eval("img", (anchors) =>
-    [].map.call(anchors, (img) => img.src)
-  );
-
-  const images = [imageURLs[3], imageURLs[1], imageURLs[9]];
-
-  await browser.close();
-
-  return images;
 };
 
 // get post

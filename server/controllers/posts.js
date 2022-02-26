@@ -91,13 +91,10 @@ export const createPost = async (req, res) => {
   const post = req.body;
 
   try {
-    // const [urls, perks] = await Promise.all([
-    //   getImageURLs(post.url),
-    //   getPerks(post.url),
-    // ]);
-
-    const urls = await getImageURLs(post.url);
-    const perks = await getPerks(post.url);
+    const [urls, perks] = await Promise.all([
+      getImageURLs(post.url),
+      getPerks(post.url),
+    ]);
 
     const newPostMessage = new PostMessage({
       ...post,

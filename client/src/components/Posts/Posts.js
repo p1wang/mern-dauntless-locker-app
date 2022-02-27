@@ -1,13 +1,11 @@
 import React from "react";
-import { Grid, CircularProgress, Container, Box } from "@material-ui/core";
-import { useSelector, useDispatch } from "react-redux";
+import { Grid, CircularProgress, Box } from "@mui/material";
+import { useSelector } from "react-redux";
 
 import Post from "../Post/Post";
-import useStyles from "./styles";
 
 const Posts = ({ setCurrentId }) => {
   const posts = useSelector((state) => state.posts);
-  const classes = useStyles();
 
   if (!posts.length) return "No posts";
 

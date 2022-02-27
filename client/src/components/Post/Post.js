@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Box,
   Card,
   CardActions,
   CardContent,
@@ -8,16 +7,13 @@ import {
   Button,
   Typography,
   Grid,
-  Container,
-} from "@material-ui/core/";
+  Link,
+} from "@mui/material";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import DeleteIcon from "@material-ui/icons/Delete";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 import { useDispatch } from "react-redux";
 import moment from "moment";
-import { useSelector } from "react-redux";
-import Link from "@material-ui/core/Link";
+// import Link from "@mui/material/Link";
 
 import useStyles from "./styles";
 import { deletePost, likePost } from "../../actions/posts";

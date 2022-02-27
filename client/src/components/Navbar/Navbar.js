@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { AppBar, Typography, Toolbar, Avatar, Button } from "@material-ui/core";
+import {
+  AppBar,
+  Typography,
+  Toolbar,
+  Avatar,
+  Button,
+  Box,
+  Container,
+} from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
@@ -35,50 +43,60 @@ const Navbar = () => {
 
   return (
     <AppBar className={classes.appBar} position="sticky" color="inherit">
-      <div className={classes.brandContainer}>
-        <Typography
-          component={Link}
-          to="/"
-          className={classes.heading}
-          variant="h2"
-          align="center"
+      <Container maxWidth="xl">
+        <Toolbar
+          className={classes.toolbar}
+          // sx={{
+          //   justifyContent: { xs: "space-between" },
+          // }}
         >
-          Dauntless Locker
-        </Typography>
-      </div>
-      <Toolbar className={classes.toolbar}>
-        {user?.result ? (
-          <div className={classes.profile}>
-            <Avatar
-              className={classes.purple}
-              alt={user?.result.name}
-              src={user?.result.imageUrl}
-            >
-              {user?.result.name.charAt(0)}
-            </Avatar>
-            <Typography className={classes.userName} variant="h6">
-              {user?.result.name}
-            </Typography>
-            <Button
-              variant="contained"
-              className={classes.logout}
+          <Box className={classes.brandContainer}>
+            <Typography
+              component={Link}
+              to="/"
+              className={classes.heading}
               color="secondary"
-              onClick={logout}
+              variant="h2"
+              // sx={{
+              //   justifyContent: { xs: "space-between" },
+              // }}
+              align="center"
             >
-              Logout
+              Dauntless Locker
+            </Typography>
+          </Box>
+          {user?.result ? (
+            <div className={classes.profile}>
+              <Avatar
+                alt={user?.result.name}
+                src={user?.result.imageUrl}
+                // sx={{ display: { xs: "none" } }}
+              >
+                {user?.result.name.charAt(0)}
+              </Avatar>
+              <Typography
+                // sx={{ display: { xs: "none" } }}
+                className={classes.userName}
+                variant="h6"
+              >
+                {user?.result.name}
+              </Typography>
+              <Button variant="contained" color="primary" onClick={logout}>
+                Logout
+              </Button>
+            </div>
+          ) : (
+            <Button
+              component={Link}
+              to="/auth"
+              variant="contained"
+              color="secondary"
+            >
+              Sign In
             </Button>
-          </div>
-        ) : (
-          <Button
-            component={Link}
-            to="/auth"
-            variant="contained"
-            color="primary"
-          >
-            Sign In
-          </Button>
-        )}
-      </Toolbar>
+          )}
+        </Toolbar>
+      </Container>
     </AppBar>
   );
 };

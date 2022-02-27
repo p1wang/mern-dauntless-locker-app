@@ -2,14 +2,12 @@ import { Container, Grid, Grow } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import useStyles from "./styles";
 import { getPosts } from "../../actions/posts";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
 import Searchbar from "../Searchbar/Searchbar";
 
 const Home = () => {
-  const classes = useStyles();
   const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
 
@@ -31,12 +29,15 @@ const Home = () => {
         <Grid item>
           <Searchbar />
         </Grid>
+
         <Grid item>
           <Form currentId={currentId} setCurrentId={setCurrentId} />
         </Grid>
-        <Grid item xs={12}>
-          <Posts setCurrentId={setCurrentId} />
-        </Grid>
+        <Grow in timeout={800}>
+          <Grid item xs={12}>
+            <Posts setCurrentId={setCurrentId} />
+          </Grid>
+        </Grow>
       </Grid>
     </Container>
   );

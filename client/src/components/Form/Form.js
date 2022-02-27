@@ -1,4 +1,4 @@
-import { Button, Paper, TextField, Typography, Box } from "@material-ui/core";
+import { Button, Paper, TextField, Typography, Box } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -48,7 +48,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
   return (
     <Paper elevation={6} className={classes.paper}>
-      <Box style={{ padding: "20px" }}>
+      <Box sx={{ padding: "20px" }}>
         <form
           className={classes.form}
           autoComplete="off"
@@ -106,7 +106,7 @@ const Form = ({ currentId, setCurrentId }) => {
           <Button
             className={classes.buttonSubmit}
             variant="contained"
-            color="primary"
+            color="secondary"
             size="large"
             type="submit"
             fullWidth
@@ -115,7 +115,7 @@ const Form = ({ currentId, setCurrentId }) => {
           </Button>
           <Button
             variant="contained"
-            color="secondary"
+            color="primary"
             size="small"
             onClick={clear}
             fullWidth

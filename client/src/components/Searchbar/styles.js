@@ -1,5 +1,4 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { styled, alpha } from "@mui/material/styles";
 
 export default makeStyles((theme) => ({
   searchBarContainer: {

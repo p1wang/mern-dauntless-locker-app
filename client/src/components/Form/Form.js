@@ -5,7 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import useStyles from "./styles";
 import { createPost } from "../../actions/posts";
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = ({
+  currentId,
+  setCurrentId,
+  setShowForm,
+  setShowAlert,
+  setAlertMessage,
+}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -29,10 +35,27 @@ const Form = ({ currentId, setCurrentId }) => {
     setPostData({ title: "", message: "", tags: "", url: "" });
   };
 
+  const alertResults = (msg) => {
+    setAlertMessage(msg);
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 2000);
+  };
+
   // submit
   const handleOnSubmit = async (e) => {
+    if (!postData.url.includes("dauntless-builder.com")) {
+      alertResults([
+        "warning",
+        "Upload failed, please provide valid url for the build.",
+      ]);
+      return;
+    }
     e.preventDefault();
     dispatch(createPost(postData));
+    setShowForm(false);
+    alertResults(["success", "Upload successful!"]);
     clear();
   };
 

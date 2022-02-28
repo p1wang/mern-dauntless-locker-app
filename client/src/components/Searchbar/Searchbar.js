@@ -7,13 +7,14 @@ import useStyles from "./styles";
 import { useNavigate } from "react-router-dom";
 import { getPostsBySearch } from "../../actions/posts";
 
-const Searchbar = () => {
+const Searchbar = ({ setShowForm }) => {
   const classes = useStyles();
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const searchPosts = () => {
+    setShowForm(false);
     if (searchTerm.trim()) {
       dispatch(getPostsBySearch({ searchTerm }));
       setSearchTerm("");
@@ -31,6 +32,12 @@ const Searchbar = () => {
         inputProps={{ "aria-label": "search" }}
         onChange={(e) => setSearchTerm(e.target.value)}
         value={searchTerm}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            console.log("Enter key pressed");
+            searchPosts();
+          }
+        }}
       />
       <SearchIcon
         onClick={searchPosts}

@@ -7,6 +7,7 @@ import {
   Button,
   Box,
   Container,
+  Grid,
 } from "@mui/material";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -42,49 +43,33 @@ const Navbar = () => {
   }, [location]);
 
   return (
-    <AppBar className={classes.appBar} position="sticky" color="inherit">
-      <Container maxWidth="xl">
-        <Toolbar
-          className={classes.toolbar}
-          // sx={{
-          //   justifyContent: { xs: "space-between" },
-          // }}
-        >
-          <Box className={classes.brandContainer}>
-            <Typography
-              component={Link}
-              to="/"
-              className={classes.heading}
-              color="secondary"
-              variant="h2"
-              // sx={{
-              //   justifyContent: { xs: "space-between" },
-              // }}
-              align="center"
-            >
-              Dauntless Locker
-            </Typography>
-          </Box>
+    <AppBar className={classes.appBar} position="fixed" color="inherit">
+      <Toolbar className={classes.toolbar}>
+        <Box className={classes.brandContainer}>
+          <Typography
+            component={Link}
+            to="/"
+            className={classes.heading}
+            color="secondary"
+            variant="h2"
+            align="center"
+          >
+            Dauntless Locker
+          </Typography>
+        </Box>
+        <Box>
           {user?.result ? (
-            <div className={classes.profile}>
-              <Avatar
-                alt={user?.result.name}
-                src={user?.result.imageUrl}
-                // sx={{ display: { xs: "none" } }}
-              >
+            <Box className={classes.profile}>
+              <Avatar alt={user?.result.name} src={user?.result.imageUrl}>
                 {user?.result.name.charAt(0)}
               </Avatar>
-              <Typography
-                // sx={{ display: { xs: "none" } }}
-                className={classes.userName}
-                variant="h6"
-              >
+              <Typography className={classes.userName} variant="h6">
                 {user?.result.name}
               </Typography>
               <Button variant="contained" color="primary" onClick={logout}>
                 Logout
               </Button>
-            </div>
+            </Box>
           ) : (
             <Button
               component={Link}
@@ -95,8 +80,8 @@ const Navbar = () => {
               Sign In
             </Button>
           )}
-        </Toolbar>
-      </Container>
+        </Box>
+      </Toolbar>
     </AppBar>
   );
 };

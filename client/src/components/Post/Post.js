@@ -58,11 +58,11 @@ const Post = ({ post, setCurrentId }) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        height: "500px",
-        width: "550px",
+        height: "450px",
+        width: "450px",
       }}
     >
-      <CardContent>
+      <CardContent sx={{ paddingBottom: 0 }}>
         <Typography variant="body2">
           {moment(post.createdAt).fromNow()}
         </Typography>
@@ -112,14 +112,14 @@ const Post = ({ post, setCurrentId }) => {
 
           {/* <Typography
             variant="body2"
-            style={{ textAlign: "center", whiteSpace: "pre-line" }}
+            sx={{ textAlign: "center", whiteSpace: "pre-line" }}
           >
             {post.perks.map((perk) => `${perk}\n`)}
           </Typography> */}
         </Grid>
       </Grid>
 
-      <CardContent>
+      <CardContent sx={{ paddingBottom: 0 }}>
         <Typography sx={{ paddingBottom: 1 }} variant="h5" color="primary">
           {post.title}
         </Typography>
@@ -137,13 +137,34 @@ const Post = ({ post, setCurrentId }) => {
           {post.tags.map((tag) => `#${tag} `)}
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" component={Link} href={post.url} target="_blank">
+      <CardActions sx={{ paddingTop: 0 }}>
+        <Button
+          size="small"
+          component={Link}
+          href={post.url}
+          target="_blank"
+          color="secondary"
+          variant="outlined"
+        >
           Open
         </Button>
         <Button
           size="small"
-          style={{ marginRight: "auto" }}
+          target="_blank"
+          color="secondary"
+          variant="outlined"
+          sx={{ marginLeft: "8px" }}
+          onClick={async () => {
+            navigator.clipboard.writeText(post.url);
+          }}
+        >
+          Copy
+        </Button>
+        <Button
+          size="small"
+          sx={{ marginRight: "auto", marginLeft: "8px" }}
+          color="secondary"
+          variant="outlined"
           disabled={!user?.result}
           onClick={() => dispatch(likePost(post._id))}
         >
@@ -151,7 +172,12 @@ const Post = ({ post, setCurrentId }) => {
         </Button>
         {(user?.result?.googleId === post?.creator ||
           user?.result?._id === post?.creator) && (
-          <Button size="small" onClick={() => dispatch(deletePost(post._id))}>
+          <Button
+            size="small"
+            color="primary"
+            variant="outlined"
+            onClick={() => dispatch(deletePost(post._id))}
+          >
             Delete
           </Button>
         )}

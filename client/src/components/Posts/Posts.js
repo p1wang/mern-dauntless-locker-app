@@ -10,10 +10,10 @@ const Posts = ({ setCurrentId }) => {
   return !posts.length ? (
     <CircularProgress />
   ) : (
-    <Grid container style={{ justifyContent: "center" }}>
+    <Grid container sx={{ justifyContent: "center" }}>
       {posts.map((post) => (
         <Grid key={post._id} item>
-          <Box style={{ padding: "20px" }}>
+          <Box sx={{ padding: "20px" }}>
             <Post post={post} setCurrentId={setCurrentId} />
           </Box>
         </Grid>

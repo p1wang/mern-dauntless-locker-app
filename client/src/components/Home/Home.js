@@ -34,7 +34,7 @@ const Home = () => {
       <Grid
         container
         spacing={3}
-        style={{
+        sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

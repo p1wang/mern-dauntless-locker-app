@@ -27,7 +27,7 @@ const Searchbar = ({ setShowForm }) => {
   return (
     <div className={classes.searchBarContainer}>
       <InputBase
-        style={{ width: "50ch" }}
+        sx={{ width: "50ch" }}
         placeholder="Search…"
         inputProps={{ "aria-label": "search" }}
         onChange={(e) => setSearchTerm(e.target.value)}
@@ -41,7 +41,7 @@ const Searchbar = ({ setShowForm }) => {
       />
       <SearchIcon
         onClick={searchPosts}
-        style={{ display: "block", margin: "auto" }}
+        sx={{ display: "block", margin: "auto" }}
       />
     </div>
   );

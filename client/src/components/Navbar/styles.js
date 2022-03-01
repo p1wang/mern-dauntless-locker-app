@@ -4,7 +4,6 @@ export default makeStyles((theme) => ({
   appBar: {
     display: "flex",
     padding: "10px 50px",
-    marginBottom: "50px",
   },
   heading: {
     textDecoration: "none",
@@ -16,7 +15,11 @@ export default makeStyles((theme) => ({
   profile: {
     display: "flex",
     justifyContent: "space-between",
-    width: "30%",
+    alignItems: "center",
+    gap: "50px",
+    // [theme.breakpoints.down("md")]: {
+    //   backgroundColor: "green",
+    // },
   },
   userName: {
     display: "flex",

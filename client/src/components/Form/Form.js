@@ -99,7 +99,7 @@ const Form = ({
             fullWidth
             multiline
             rows={4}
-            inputProps={{ maxLength: "150" }}
+            inputProps={{ maxLength: "200" }}
             value={postData.message}
             onChange={(e) =>
               setPostData({ ...postData, message: e.target.value })

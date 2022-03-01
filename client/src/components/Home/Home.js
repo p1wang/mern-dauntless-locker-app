@@ -1,4 +1,4 @@
-import { Container, Grid, Grow } from "@material-ui/core";
+import { Container, Grid, Grow, Box, Link } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Alert from "@mui/material/Alert";
@@ -43,9 +43,34 @@ const Home = () => {
         <Grid item>
           <Searchbar setShowForm={setShowForm} />
         </Grid>
-        <Button variant="contained" onClick={() => setShowForm(true)}>
-          Create
-        </Button>
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-around",
+            mt: 3,
+            minWidth: "400px",
+          }}
+        >
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => setShowForm(true)}
+          >
+            Create Post
+          </Button>
+          <Button
+            variant="contained"
+            component={Link}
+            href={
+              "https://www.dauntless-builder.com/b/XafXTkTpTQT8TbTMT5TeTxTmTdTJTwT2T7T2T1TyT8TQTrTpT3"
+            }
+            target="_blank"
+          >
+            Make Build URLs
+          </Button>
+        </Box>
+
         {showForm && (
           <Grid item>
             <Form

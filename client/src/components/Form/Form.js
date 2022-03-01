@@ -22,13 +22,13 @@ const Form = ({
     url: "",
   });
 
-  const post = useSelector((state) =>
-    currentId ? state.posts.find((message) => message._id === currentId) : null
-  );
+  // const post = useSelector((state) =>
+  //   currentId ? state.posts.find((message) => message._id === currentId) : null
+  // );
 
-  useEffect(() => {
-    if (post) setPostData(post);
-  }, [post]);
+  // useEffect(() => {
+  //   if (post) setPostData(post);
+  // }, [post]);
 
   const clear = () => {
     setCurrentId(0);
@@ -45,6 +45,7 @@ const Form = ({
 
   // submit
   const handleOnSubmit = async (e) => {
+    e.preventDefault();
     if (!postData.url.includes("dauntless-builder.com")) {
       alertResults([
         "warning",
@@ -52,7 +53,6 @@ const Form = ({
       ]);
       return;
     }
-    e.preventDefault();
     dispatch(createPost(postData));
     setShowForm(false);
     alertResults(["success", "Upload successful!"]);
@@ -86,7 +86,7 @@ const Form = ({
             variant="outlined"
             label="Title"
             fullWidth
-            inputProps={{ maxLength: "50" }}
+            inputProps={{ maxLength: "35" }}
             value={postData.title}
             onChange={(e) =>
               setPostData({ ...postData, title: e.target.value })
@@ -99,7 +99,7 @@ const Form = ({
             fullWidth
             multiline
             rows={4}
-            inputProps={{ maxLength: "200" }}
+            inputProps={{ maxLength: "150" }}
             value={postData.message}
             onChange={(e) =>
               setPostData({ ...postData, message: e.target.value })

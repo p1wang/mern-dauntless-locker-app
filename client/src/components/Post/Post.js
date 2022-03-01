@@ -13,7 +13,6 @@ import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
 import { useDispatch } from "react-redux";
 import moment from "moment";
-// import Link from "@mui/material/Link";
 
 import useStyles from "./styles";
 import { deletePost, likePost } from "../../actions/posts";
@@ -53,16 +52,25 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   return (
-    <Card raised className={classes.card}>
+    <Card
+      raised
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        height: "500px",
+        width: "550px",
+      }}
+    >
       <CardContent>
-        <Typography variant="body2" className={classes.moment}>
+        <Typography variant="body2">
           {moment(post.createdAt).fromNow()}
         </Typography>
       </CardContent>
 
       <Grid
         container
-        style={{
+        sx={{
           justifyContent: "space-around",
           alignItems: "center",
         }}
@@ -72,35 +80,60 @@ const Post = ({ post, setCurrentId }) => {
             component="img"
             alt="weapon"
             image={post.imageURLs[0]}
-            style={{ height: 140, width: 140 }}
+            sx={{ width: "140px", height: "140px" }}
           />
         </Grid>
         <Grid item>
           <CardMedia
             component="img"
             alt="weapon"
-            style={{ height: 140, width: 140 }}
+            sx={{ width: "140px", height: "140px" }}
             image={post.imageURLs[1]}
           />
         </Grid>
-        <Grid item style={{ padding: "0 5%" }}>
-          <Typography
+        <Grid
+          item
+          sx={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {post.perks.map((perk) => (
+            <Typography
+              sx={{
+                textAlign: "center",
+              }}
+              variant="body2"
+              key={perk}
+            >
+              {perk}
+            </Typography>
+          ))}
+
+          {/* <Typography
             variant="body2"
             style={{ textAlign: "center", whiteSpace: "pre-line" }}
           >
             {post.perks.map((perk) => `${perk}\n`)}
-          </Typography>
+          </Typography> */}
         </Grid>
       </Grid>
 
       <CardContent>
-        <Typography gutterBottom variant="h6">
+        <Typography sx={{ paddingBottom: 1 }} variant="h5" color="primary">
           {post.title}
         </Typography>
-        <Typography gutterBottom variant="body2">
+        <Typography
+          sx={{
+            paddingBottom: 2,
+            // overflow: "hidden",
+            wordWrap: "break-word",
+          }}
+          variant="body2"
+        >
           {post.message}
         </Typography>
-        <Typography variant="body2" className={classes.tags}>
+        <Typography variant="body2" color="secondary">
           {post.tags.map((tag) => `#${tag} `)}
         </Typography>
       </CardContent>

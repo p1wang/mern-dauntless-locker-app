@@ -8,10 +8,10 @@ import {
   Container,
   Box,
 } from "@mui/material";
-
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 import LockIcon from "@mui/icons-material/Lock";
+
 import Icon from "./icon";
 import { signin, signup } from "../../actions/auth";
 import { AUTH } from "../../constants/actionTypes";
@@ -34,7 +34,6 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const classes = useStyles();
-
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword(!showPassword);
 
@@ -74,7 +73,7 @@ const SignUp = () => {
     alert("Google Sign In was unsuccessful. Try again later");
 
   return (
-    <Container component="main" maxWidth="xs" sx={{ paddingTop: "200px" }}>
+    <Container component="main" className={classes.authContainer}>
       <Paper elevation={3} sx={{ padding: 2, textAlign: "center" }}>
         <Avatar sx={{ margin: "auto" }}>
           <LockIcon />

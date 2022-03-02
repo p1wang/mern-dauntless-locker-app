@@ -52,16 +52,7 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   return (
-    <Card
-      raised
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        height: "450px",
-        width: "480px",
-      }}
-    >
+    <Card raised className={classes.card}>
       <CardContent sx={{ paddingBottom: 0 }}>
         <Typography variant="body2">
           {moment(post.createdAt).fromNow()}
@@ -70,6 +61,7 @@ const Post = ({ post, setCurrentId }) => {
 
       <Grid
         container
+        spacing={1}
         sx={{
           justifyContent: "space-around",
           alignItems: "center",
@@ -109,13 +101,6 @@ const Post = ({ post, setCurrentId }) => {
               {perk}
             </Typography>
           ))}
-
-          {/* <Typography
-            variant="body2"
-            sx={{ textAlign: "center", whiteSpace: "pre-line" }}
-          >
-            {post.perks.map((perk) => `${perk}\n`)}
-          </Typography> */}
         </Grid>
       </Grid>
 

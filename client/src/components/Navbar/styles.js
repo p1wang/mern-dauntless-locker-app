@@ -9,18 +9,21 @@ export default makeStyles((theme) => ({
   },
   heading: {
     textDecoration: "none",
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
   },
   toolbar: {
     display: "flex",
     justifyContent: "space-between",
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: "center",
+    },
   },
   profile: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
     gap: "30px",
-    // [theme.breakpoints.down("md")]: {
-    //   backgroundColor: "green",
-    // },
   },
 }));

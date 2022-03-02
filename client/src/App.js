@@ -24,19 +24,21 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <HashRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" exact element={<Navigate to="posts" />} />
-          <Route path="/posts" exact element={<Home />} />
-          <Route
-            path="/auth"
-            exact
-            // element={!user ? <Auth /> : <Navigate to="/posts" />}
-            element={<Auth />}
-          />
-          <Route path="/posts/search" exact element={<Home />} />
-          <Route path="*" exact element={<Home />} />
-        </Routes>
+        <Container maxWidth="xl" disableGutters>
+          <Navbar />
+          <Routes>
+            <Route path="/" exact element={<Navigate to="posts" />} />
+            <Route path="/posts" exact element={<Home />} />
+            <Route
+              path="/auth"
+              exact
+              // element={!user ? <Auth /> : <Navigate to="/posts" />}
+              element={<Auth />}
+            />
+            <Route path="/posts/search" exact element={<Home />} />
+            <Route path="*" exact element={<Home />} />
+          </Routes>
+        </Container>
       </HashRouter>
     </ThemeProvider>
   );

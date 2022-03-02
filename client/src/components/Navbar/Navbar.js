@@ -55,28 +55,27 @@ const Navbar = () => {
         >
           Dauntless Locker
         </Typography>
-        <Box>
-          {user?.result ? (
-            <Box className={classes.profile}>
-              <Avatar alt={user?.result.name} src={user?.result.imageUrl}>
-                {user?.result.name.charAt(0)}
-              </Avatar>
-              <Typography variant="h6">{user?.result.name}</Typography>
-              <Button variant="contained" color="primary" onClick={logout}>
-                Logout
-              </Button>
-            </Box>
-          ) : (
-            <Button
-              component={Link}
-              to="/auth"
-              variant="contained"
-              color="secondary"
-            >
-              Sign In
+
+        {user?.result ? (
+          <Box className={classes.profile}>
+            <Avatar alt={user?.result.name} src={user?.result.imageUrl}>
+              {user?.result.name.charAt(0)}
+            </Avatar>
+            <Typography variant="h6">{user?.result.name}</Typography>
+            <Button variant="contained" color="primary" onClick={logout}>
+              Logout
             </Button>
-          )}
-        </Box>
+          </Box>
+        ) : (
+          <Button
+            component={Link}
+            to="/auth"
+            variant="contained"
+            color="secondary"
+          >
+            Sign In
+          </Button>
+        )}
       </Toolbar>
     </AppBar>
   );

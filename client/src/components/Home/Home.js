@@ -8,14 +8,15 @@ import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
 import Searchbar from "../Searchbar/Searchbar";
 import { Button } from "@mui/material";
+import useStyles from "./styles";
 
 const Home = () => {
   const [currentId, setCurrentId] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState([]);
-
   const dispatch = useDispatch();
+  const classes = useStyles();
 
   useEffect(() => {
     dispatch(getPosts());
@@ -23,6 +24,7 @@ const Home = () => {
 
   return (
     <Grid
+      container
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -42,13 +44,7 @@ const Home = () => {
       <Searchbar setShowForm={setShowForm} />
 
       <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: 3,
-          gap: "30px",
-        }}
+        className={classes.selectionButtons}
       >
         <Button
           variant="contained"
@@ -81,7 +77,7 @@ const Home = () => {
         </Grid>
       )}
       <Grow in timeout={800}>
-        <Grid item xs={12}>
+        <Grid item>
           <Posts setCurrentId={setCurrentId} />
         </Grid>
       </Grow>

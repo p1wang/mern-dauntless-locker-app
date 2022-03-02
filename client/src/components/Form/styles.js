@@ -9,5 +9,8 @@ export default makeStyles((theme) => ({
     width: "600px",
     padding: "20px",
     gap: "15px",
+    [theme.breakpoints.down("sm")]: {
+      width: "350px",
+    },
   },
 }));

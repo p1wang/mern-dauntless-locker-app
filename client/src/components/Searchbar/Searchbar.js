@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
-import { Box } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 
 import useStyles from "./styles";

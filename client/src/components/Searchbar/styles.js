@@ -8,7 +8,11 @@ export default makeStyles((theme) => ({
     backgroundColor: "white",
     borderRadius: "5px",
     padding: "2px 5px",
-    margin: "150px auto 0px",
+    margin: "200px auto 0px",
     width: "600px",
+    [theme.breakpoints.down("sm")]: {
+      margin: "100px auto 0px",
+      width: "300px",
+    },
   },
 }));

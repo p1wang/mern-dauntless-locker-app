@@ -1,22 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  Avatar,
-  Button,
-  Paper,
-  Typography,
-  Container,
-  Box,
-} from "@mui/material";
+import { Avatar, Button, Paper, Typography, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 import LockIcon from "@mui/icons-material/Lock";
 
-import GoogleIcon from "@mui/icons-material/Google";
 import { signin, signup } from "../../actions/auth";
 import { AUTH } from "../../constants/actionTypes";
 import useStyles from "./styles";
 import Input from "./Input";
+import GoogleIcon from "@mui/icons-material/Google";
 
 const googleAuthId = process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID;
 
@@ -134,8 +127,9 @@ const SignUp = () => {
               sx={{ mt: 3 }}
               color="primary"
               fullWidth
-              startIcon={<GoogleIcon />}
+              onClick={renderProps.onClick}
               variant="contained"
+              startIcon={<GoogleIcon />}
             >
               Google Sign In
             </Button>

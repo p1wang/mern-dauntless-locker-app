@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 import LockIcon from "@mui/icons-material/Lock";
 
-import Icon from "./icon";
+import GoogleIcon from "@mui/icons-material/Google";
 import { signin, signup } from "../../actions/auth";
 import { AUTH } from "../../constants/actionTypes";
 import useStyles from "./styles";
@@ -127,7 +127,6 @@ const SignUp = () => {
         >
           {isSignup ? "Sign Up" : "Sign In"}
         </Button>
-
         <GoogleLogin
           clientId={googleAuthId}
           render={(renderProps) => (
@@ -135,8 +134,7 @@ const SignUp = () => {
               sx={{ mt: 3 }}
               color="primary"
               fullWidth
-              onClick={renderProps.onClick}
-              startIcon={<Icon />}
+              startIcon={<GoogleIcon />}
               variant="contained"
             >
               Google Sign In

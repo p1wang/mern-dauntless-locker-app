@@ -1,4 +1,4 @@
-import { Container, Grid, Grow, Box, Link, CssBaseline } from "@mui/material";
+import { Container, Grid, Grow, Box, Link } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Alert from "@mui/material/Alert";
@@ -43,9 +43,7 @@ const Home = () => {
 
       <Searchbar setShowForm={setShowForm} />
 
-      <Box
-        className={classes.selectionButtons}
-      >
+      <Box className={classes.selectionButtons}>
         <Button
           variant="contained"
           color="success"

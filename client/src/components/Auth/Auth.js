@@ -73,94 +73,87 @@ const SignUp = () => {
     alert("Google Sign In was unsuccessful. Try again later");
 
   return (
-    <Container component="main" className={classes.authContainer}>
-      <Paper elevation={3} sx={{ padding: 2, textAlign: "center" }}>
-        <Avatar sx={{ margin: "auto" }}>
-          <LockIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5" sx={{ paddingTop: 1 }}>
-          {isSignup ? "Sign up" : "Sign in"}
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
-          {isSignup && (
-            <>
-              <Input
-                name="firstName"
-                label="First Name"
-                handleChange={handleChange}
-                autoFocus
-              />
-              <Input
-                name="lastName"
-                label="Last Name"
-                handleChange={handleChange}
-              />
-            </>
-          )}
-          <Input
-            name="email"
-            label="Email Address"
-            handleChange={handleChange}
-            type="email"
-          />
-          <Input
-            name="password"
-            label="Password"
-            handleChange={handleChange}
-            type={showPassword ? "text" : "password"}
-            handleShowPassword={handleShowPassword}
-          />
-          {isSignup && (
+    <Paper elevation={3} className={classes.authContainer}>
+      <Avatar sx={{ margin: "auto" }}>
+        <LockIcon />
+      </Avatar>
+      <Typography component="h1" variant="h5" sx={{ paddingTop: 1 }}>
+        {isSignup ? "Sign up" : "Sign in"}
+      </Typography>
+      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
+        {isSignup && (
+          <>
             <Input
-              name="confirmPassword"
-              label="Repeat Password"
+              name="firstName"
+              label="First Name"
               handleChange={handleChange}
-              type="password"
+              autoFocus
             />
-          )}
-
-          <Button
-            sx={{ mt: 2 }}
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            {isSignup ? "Sign Up" : "Sign In"}
-          </Button>
-
-          <GoogleLogin
-            clientId={googleAuthId}
-            render={(renderProps) => (
-              <Button
-                sx={{ mt: 3 }}
-                color="primary"
-                fullWidth
-                onClick={renderProps.onClick}
-                startIcon={<Icon />}
-                variant="contained"
-              >
-                Google Sign In
-              </Button>
-            )}
-            onSuccess={googleSuccess}
-            onFailure={googleError}
-            cookiePolicy="single_host_origin"
+            <Input
+              name="lastName"
+              label="Last Name"
+              handleChange={handleChange}
+            />
+          </>
+        )}
+        <Input
+          name="email"
+          label="Email Address"
+          handleChange={handleChange}
+          type="email"
+        />
+        <Input
+          name="password"
+          label="Password"
+          handleChange={handleChange}
+          type={showPassword ? "text" : "password"}
+          handleShowPassword={handleShowPassword}
+        />
+        {isSignup && (
+          <Input
+            name="confirmPassword"
+            label="Repeat Password"
+            handleChange={handleChange}
+            type="password"
           />
+        )}
 
-          <Button
-            fullWidth
-            onClick={switchMode}
-            sx={{ mt: 1 }}
-            color="secondary"
-          >
-            {isSignup
-              ? "Already have an account? Sign in"
-              : "Don't have an account? Sign Up"}
-          </Button>
-        </Box>
-      </Paper>
-    </Container>
+        <Button
+          sx={{ mt: 2 }}
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+        >
+          {isSignup ? "Sign Up" : "Sign In"}
+        </Button>
+
+        <GoogleLogin
+          clientId={googleAuthId}
+          render={(renderProps) => (
+            <Button
+              sx={{ mt: 3 }}
+              color="primary"
+              fullWidth
+              onClick={renderProps.onClick}
+              startIcon={<Icon />}
+              variant="contained"
+            >
+              Google Sign In
+            </Button>
+          )}
+          onSuccess={googleSuccess}
+          onFailure={googleError}
+          cookiePolicy="single_host_origin"
+        />
+
+        <Button fullWidth onClick={switchMode} sx={{ mt: 1 }} color="secondary">
+          {isSignup
+            ? "Already have an account? Sign in"
+            : "Don't have an account? Sign Up"}
+        </Button>
+      </Box>
+    </Paper>
   );
 };
 

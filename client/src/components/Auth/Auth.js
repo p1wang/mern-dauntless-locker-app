@@ -4,7 +4,6 @@ import {
   Avatar,
   Button,
   Paper,
-  Grid,
   Typography,
   Container,
   Box,
@@ -12,8 +11,7 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-
+import LockIcon from "@mui/icons-material/Lock";
 import Icon from "./icon";
 import { signin, signup } from "../../actions/auth";
 import { AUTH } from "../../constants/actionTypes";
@@ -76,20 +74,15 @@ const SignUp = () => {
     alert("Google Sign In was unsuccessful. Try again later");
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Paper className={classes.paper} elevation={3} sx={{ mt: 2 }}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+    <Container component="main" maxWidth="xs" sx={{ paddingTop: "200px" }}>
+      <Paper elevation={3} sx={{ padding: 2, textAlign: "center" }}>
+        <Avatar sx={{ margin: "auto" }}>
+          <LockIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" sx={{ paddingTop: 1 }}>
           {isSignup ? "Sign up" : "Sign in"}
         </Typography>
-        <Box
-          component="form"
-          className={classes.form}
-          onSubmit={handleSubmit}
-          sx={{ mt: 2 }}
-        >
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
           {isSignup && (
             <>
               <Input
@@ -133,7 +126,6 @@ const SignUp = () => {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
           >
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
@@ -143,7 +135,6 @@ const SignUp = () => {
             render={(renderProps) => (
               <Button
                 sx={{ mt: 3 }}
-                className={classes.googleButton}
                 color="primary"
                 fullWidth
                 onClick={renderProps.onClick}

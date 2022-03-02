@@ -4,7 +4,7 @@ import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import Auth from "./components/Auth/Auth";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
-import { ThemeProvider } from "@mui/material";
+import { Container, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({

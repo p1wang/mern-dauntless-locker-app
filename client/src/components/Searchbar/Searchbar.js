@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
+import { Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 
 import useStyles from "./styles";
@@ -25,9 +26,9 @@ const Searchbar = ({ setShowForm }) => {
   };
 
   return (
-    <div className={classes.searchBarContainer}>
+    <Box className={classes.searchBarContainer}>
       <InputBase
-        sx={{ width: "50ch" }}
+        sx={{ width: "50ch", width: "90%" }}
         placeholder="Search…"
         inputProps={{ "aria-label": "search" }}
         onChange={(e) => setSearchTerm(e.target.value)}
@@ -41,9 +42,9 @@ const Searchbar = ({ setShowForm }) => {
       />
       <SearchIcon
         onClick={searchPosts}
-        sx={{ display: "block", margin: "auto" }}
+        sx={{ display: "block", margin: "auto", width: "10%" }}
       />
-    </div>
+    </Box>
   );
 };
 

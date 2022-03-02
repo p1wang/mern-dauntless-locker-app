@@ -70,83 +70,77 @@ const Form = ({
   }
 
   return (
-    <Paper elevation={6} className={classes.paper}>
-      <Box sx={{ padding: "20px" }}>
-        <form
-          className={classes.form}
-          autoComplete="off"
-          noValidate
-          onSubmit={handleOnSubmit}
-        >
-          <Typography variant="h6" align="center">
-            New builds
-          </Typography>
-          <TextField
-            name="title"
-            variant="outlined"
-            label="Title"
-            fullWidth
-            inputProps={{ maxLength: "35" }}
-            value={postData.title}
-            onChange={(e) =>
-              setPostData({ ...postData, title: e.target.value })
-            }
-          />
-          <TextField
-            name="message"
-            variant="outlined"
-            label="Message"
-            fullWidth
-            multiline
-            rows={4}
-            inputProps={{ maxLength: "200" }}
-            value={postData.message}
-            onChange={(e) =>
-              setPostData({ ...postData, message: e.target.value })
-            }
-          />
-          <TextField
-            name="tags"
-            variant="outlined"
-            label="Tags (coma separated)"
-            fullWidth
-            inputProps={{ maxLength: "100" }}
-            value={postData.tags}
-            onChange={(e) =>
-              setPostData({ ...postData, tags: e.target.value.split(",") })
-            }
-          />
-          <TextField
-            name="url"
-            variant="outlined"
-            label="URL to the build"
-            fullWidth
-            inputProps={{ maxLength: "100" }}
-            value={postData.url}
-            onChange={(e) => setPostData({ ...postData, url: e.target.value })}
-          />
+    <Paper
+      elevation={6}
+      component="form"
+      className={classes.form}
+      autoComplete="off"
+      noValidate
+      onSubmit={handleOnSubmit}
+    >
+      <Typography variant="h6" align="center">
+        New builds
+      </Typography>
+      <TextField
+        name="title"
+        variant="outlined"
+        label="Title"
+        fullWidth
+        inputProps={{ maxLength: "35" }}
+        value={postData.title}
+        onChange={(e) => setPostData({ ...postData, title: e.target.value })}
+      />
+      <TextField
+        name="message"
+        variant="outlined"
+        label="Message"
+        fullWidth
+        multiline
+        rows={4}
+        inputProps={{ maxLength: "200" }}
+        value={postData.message}
+        onChange={(e) => setPostData({ ...postData, message: e.target.value })}
+      />
+      <TextField
+        name="tags"
+        variant="outlined"
+        label="Tags (coma separated)"
+        fullWidth
+        inputProps={{ maxLength: "100" }}
+        value={postData.tags}
+        onChange={(e) =>
+          setPostData({ ...postData, tags: e.target.value.split(",") })
+        }
+      />
+      <TextField
+        name="url"
+        variant="outlined"
+        label="URL to the build"
+        fullWidth
+        inputProps={{ maxLength: "100" }}
+        value={postData.url}
+        onChange={(e) => setPostData({ ...postData, url: e.target.value })}
+      />
 
-          <Button
-            className={classes.buttonSubmit}
-            variant="contained"
-            color="secondary"
-            size="large"
-            type="submit"
-            fullWidth
-          >
-            Submit
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            onClick={clear}
-            fullWidth
-          >
-            Clear
-          </Button>
-        </form>
-      </Box>
+      <Button
+        className={classes.buttonSubmit}
+        variant="contained"
+        color="secondary"
+        size="large"
+        type="submit"
+        fullWidth
+      >
+        Submit
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        onClick={clear}
+        fullWidth
+      >
+        Clear
+      </Button>
     </Paper>
   );
 };

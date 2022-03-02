@@ -1,14 +1,13 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 
 export default makeStyles((theme) => ({
   form: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    gap: "15px",
-  },
-  paper: {
-    marginTop: "20px",
+    margin: "20px",
     width: "600px",
+    padding: "20px",
+    gap: "15px",
   },
 }));

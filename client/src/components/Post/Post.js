@@ -9,8 +9,8 @@ import {
   Grid,
   Link,
 } from "@mui/material";
-import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
-import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 
@@ -28,7 +28,7 @@ const Post = ({ post, setCurrentId }) => {
         (like) => like === (user?.result?.googleId || user?.result?._id)
       ) ? (
         <>
-          <ThumbUpAltIcon fontSize="small" />
+          <ThumbUpOffAltIcon fontSize="small" />
           &nbsp;
           {post.likes.length > 2
             ? `You and ${post.likes.length - 1} others`
@@ -36,7 +36,7 @@ const Post = ({ post, setCurrentId }) => {
         </>
       ) : (
         <>
-          <ThumbUpAltOutlined fontSize="small" />
+          <ThumbUpOutlinedIcon fontSize="small" />
           &nbsp;{post.likes.length}
           {post.likes.length === 1 ? "Like" : "Likes"}
         </>
@@ -45,7 +45,7 @@ const Post = ({ post, setCurrentId }) => {
 
     return (
       <>
-        <ThumbUpAltOutlined fontSize="small" />
+        <ThumbUpOutlinedIcon fontSize="small" />
         &nbsp;Like
       </>
     );
@@ -59,7 +59,7 @@ const Post = ({ post, setCurrentId }) => {
         flexDirection: "column",
         justifyContent: "space-between",
         height: "450px",
-        width: "450px",
+        width: "480px",
       }}
     >
       <CardContent sx={{ paddingBottom: 0 }}>

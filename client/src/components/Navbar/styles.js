@@ -1,9 +1,11 @@
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@mui/styles";
 
 export default makeStyles((theme) => ({
   appBar: {
     display: "flex",
     padding: "10px 50px",
+    position: "fixed",
+    width: "100%",
   },
   heading: {
     textDecoration: "none",
@@ -16,17 +18,9 @@ export default makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    gap: "50px",
+    gap: "30px",
     // [theme.breakpoints.down("md")]: {
     //   backgroundColor: "green",
     // },
-  },
-  userName: {
-    display: "flex",
-    alignItems: "center",
-  },
-  brandContainer: {
-    display: "flex",
-    alignItems: "center",
   },
 }));

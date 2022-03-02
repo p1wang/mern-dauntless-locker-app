@@ -38,6 +38,11 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (form.password != form.confirmPassword && isSignup) {
+      alert("Passwords and Confirmed Passwords don't match");
+      return;
+    }
     if (isSignup) {
       dispatch(signup(form, navigate));
     } else {
@@ -45,7 +50,6 @@ const SignUp = () => {
     }
   };
 
-  //only changing the target field value and use spread operator to combine the new value with the rest of the object
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 

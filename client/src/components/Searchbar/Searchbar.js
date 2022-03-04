@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { Grid, Box } from "@mui/material";
@@ -7,12 +7,14 @@ import { useDispatch } from "react-redux";
 import useStyles from "./styles";
 import { useNavigate } from "react-router-dom";
 import { getPostsBySearch } from "../../actions/posts";
+import { AppContext } from "../../App";
 
 const Searchbar = ({ setShowForm }) => {
   const classes = useStyles();
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { showLoadingCircle, setShowLoadingCircle } = useContext(AppContext);
 
   const searchPosts = () => {
     setShowForm(false);
@@ -23,6 +25,7 @@ const Searchbar = ({ setShowForm }) => {
     } else {
       navigate("/");
     }
+    setShowLoadingCircle(true);
   };
 
   return (

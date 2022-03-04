@@ -32,16 +32,15 @@ const Home = () => {
         alignItems: "center",
       }}
     >
+      <Searchbar setShowForm={setShowForm} />
       {showAlert && (
         <Alert
           severity={alertMessage[0]}
-          sx={{ width: "50%", margin: "0 auto 30px" }}
+          sx={{ width: "50%", marginTop: "30px" }}
         >
           {alertMessage[1]}
         </Alert>
       )}
-
-      <Searchbar setShowForm={setShowForm} />
 
       <Box className={classes.selectionButtons}>
         <Button

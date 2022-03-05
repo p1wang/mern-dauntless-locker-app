@@ -1,4 +1,4 @@
-import { Container, Grid, Grow, Box, Link } from "@mui/material";
+import { Container, Grid, Grow, Box, Link, Paper } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Alert from "@mui/material/Alert";
@@ -9,9 +9,19 @@ import Form from "../Form/Form";
 import Searchbar from "../Searchbar/Searchbar";
 import { Button } from "@mui/material";
 import useStyles from "./styles";
+import Paginate from "../Pagination/Pagination";
+import { useLocation } from "react-router-dom";
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 const Home = () => {
   const [currentId, setCurrentId] = useState(null);
+  const query = useQuery();
+  const page = query.get("page") || 1;
+  const searchQuery = query.get("searchQuery");
+
   const [showForm, setShowForm] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState([]);
@@ -74,10 +84,15 @@ const Home = () => {
         </Grid>
       )}
       <Grow in timeout={800}>
-        <Grid item>
+        <Grid item margin={3}>
           <Posts setCurrentId={setCurrentId} />
         </Grid>
       </Grow>
+      {!searchQuery && (
+        <Paper elevation={6}>
+          <Paginate page={page} />
+        </Paper>
+      )}
     </Grid>
   );
 };

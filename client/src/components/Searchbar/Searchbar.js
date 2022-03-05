@@ -5,7 +5,7 @@ import { Grid, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 
 import useStyles from "./styles";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getPostsBySearch } from "../../actions/posts";
 import { AppContext } from "../../App";
 

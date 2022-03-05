@@ -10,6 +10,7 @@ const auth = (state = { authData: null }, action) => {
         ...state,
         authData: action.payload,
       };
+      
     case LOGOUT:
       localStorage.clear();
 

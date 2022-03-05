@@ -7,7 +7,7 @@ import useStyles from "./styles";
 import { AppContext } from "../../App";
 
 const Posts = ({ setCurrentId }) => {
-  const posts = useSelector((state) => state.posts);
+  const { posts } = useSelector((state) => state.posts);
   const classes = useStyles();
   // const [showLoadingCircle, setShowLoadingCircle] = useState(true);
   const { showLoadingCircle, setShowLoadingCircle } = useContext(AppContext);
@@ -17,7 +17,7 @@ const Posts = ({ setCurrentId }) => {
     clearTimeout(toRef);
   }, 10000);
 
-  return !posts.length ? (
+  return !posts?.length ? (
     showLoadingCircle ? (
       <Box
         sx={{

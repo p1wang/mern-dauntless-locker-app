@@ -4,7 +4,6 @@ import { Avatar, Button, Paper, Typography, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "react-google-login";
 import LockIcon from "@mui/icons-material/Lock";
-import { useSelector } from "react-redux";
 
 import { signin, signup } from "../../actions/auth";
 import { AUTH } from "../../constants/actionTypes";
@@ -30,7 +29,6 @@ const SignUp = () => {
   const classes = useStyles();
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword(!showPassword);
-  const authData = useSelector((state) => state.auth);
 
   const switchMode = () => {
     setForm(initialState);

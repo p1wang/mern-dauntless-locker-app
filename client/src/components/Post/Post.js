@@ -13,6 +13,7 @@ import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import { useDispatch } from "react-redux";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 import useStyles from "./styles";
 import { deletePost, likePost } from "../../actions/posts";
@@ -20,6 +21,7 @@ import { deletePost, likePost } from "../../actions/posts";
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const Likes = () => {
@@ -161,7 +163,7 @@ const Post = ({ post, setCurrentId }) => {
             size="small"
             color="primary"
             variant="outlined"
-            onClick={() => dispatch(deletePost(post._id))}
+            onClick={() => dispatch(deletePost(post._id, navigate))}
           >
             Delete
           </Button>

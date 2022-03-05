@@ -18,7 +18,6 @@ const posts = (state = { posts: [] }, action) => {
     case FETCH_BY_SEARCH:
       return { ...state, posts: action.payload };
     case CREATE:
-      
       return { ...state, posts: [...state.posts, action.payload] };
     case DELETE:
       return {

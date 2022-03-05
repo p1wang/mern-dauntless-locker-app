@@ -88,11 +88,7 @@ const Home = () => {
           <Posts setCurrentId={setCurrentId} />
         </Grid>
       </Grow>
-      {!searchQuery && (
-        <Paper elevation={6}>
-          <Paginate page={page} />
-        </Paper>
-      )}
+      {!searchQuery && <Paginate page={page} />}
     </Grid>
   );
 };

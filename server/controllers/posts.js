@@ -91,7 +91,7 @@ export const getPostsBySearch = async (req, res) => {
         { tags: new RegExp(searchQuery, "i") }, //convert document data into regular expression object
         { title: new RegExp(searchQuery, "i") },
       ],
-    });
+    }).sort({ _id: -1 });
 
     res.status(200).json(posts);
   } catch (error) {

@@ -9,11 +9,6 @@ import userRoutes from "./routes/user.js";
 const app = express();
 dotenv.config();
 
-// for testing connecting
-// app.get("/", (req, res) => {
-//   res.send("Hello to dauntless locker app");
-// });
-
 // Each app.use(middleware) is called every time a request is sent to the server.
 app.use(bodyParser.json({ limit: "50mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));

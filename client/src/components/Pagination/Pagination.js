@@ -18,12 +18,10 @@ const Paginate = ({ page }) => {
 
   return (
     <Pagination
-      classes={{ ul: classes.ul }}
+      sx={{ marginBottom: 2 }}
       count={numberOfPages}
       page={Number(page) || 1}
-      variant="outlined"
-      shape="rounded"
-      color="secondary"
+      color="primary"
       renderItem={(item) => (
         <PaginationItem
           {...item}

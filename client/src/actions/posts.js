@@ -1,7 +1,6 @@
 import {
   FETCH_ALL,
   CREATE,
-  UPDATE,
   DELETE,
   LIKE,
   FETCH_BY_SEARCH,
@@ -18,13 +17,12 @@ export const getPosts = (page) => async (dispatch) => {
   }
 };
 
-export const createPost = (post) => async (dispatch) => {
-  // dispatch({ type: START_LOADING });
+export const createPost = (post, navigate) => async (dispatch) => {
   try {
     const { data } = await api.createPost(post);
 
     dispatch({ type: CREATE, payload: data });
-    // dispatch({ type: END_LOADING });
+    navigate("/");
   } catch (error) {
     console.log(error);
   }

@@ -1,34 +1,22 @@
 import { Button, Paper, TextField, Typography, Box } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import useStyles from "./styles";
 import { createPost } from "../../actions/posts";
 
-const Form = ({
-  currentId,
-  setCurrentId,
-  setShowForm,
-  setShowAlert,
-  setAlertMessage,
-}) => {
+const Form = ({ setCurrentId, setShowForm, setShowAlert, setAlertMessage }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
+  const navigate = useNavigate();
   const [postData, setPostData] = useState({
     title: "",
     message: "",
     tags: "",
     url: "",
   });
-
-  // const post = useSelector((state) =>
-  //   currentId ? state.posts.find((message) => message._id === currentId) : null
-  // );
-
-  // useEffect(() => {
-  //   if (post) setPostData(post);
-  // }, [post]);
 
   const clear = () => {
     setCurrentId(0);
@@ -53,7 +41,7 @@ const Form = ({
       ]);
       return;
     }
-    dispatch(createPost(postData));
+    dispatch(createPost(postData, navigate));
     setShowForm(false);
     alertResults(["success", "Upload successful!"]);
     clear();

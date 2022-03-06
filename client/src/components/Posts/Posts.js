@@ -15,7 +15,7 @@ const Posts = ({ setCurrentId }) => {
   const toRef = setTimeout(() => {
     setShowLoadingCircle(false);
     clearTimeout(toRef);
-  }, 10000);
+  }, 30000);
 
   return !posts?.length ? (
     showLoadingCircle ? (

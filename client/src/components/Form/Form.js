@@ -1,6 +1,6 @@
-import { Button, Paper, TextField, Typography, Box } from "@mui/material";
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { Button, Paper, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import useStyles from "./styles";
@@ -31,7 +31,6 @@ const Form = ({ setCurrentId, setShowForm, setShowAlert, setAlertMessage }) => {
     }, 2000);
   };
 
-  // submit
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     if (!postData.url.includes("dauntless-builder.com")) {

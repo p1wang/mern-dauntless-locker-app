@@ -7,7 +7,6 @@ export const signin = (formData, navigate) => async (dispatch) => {
     console.log(data);
 
     dispatch({ type: AUTH, payload: data });
-    //basically refreshes page
     navigate("/");
   } catch (error) {
     alert("Either your password or email is wrong, please try again!");

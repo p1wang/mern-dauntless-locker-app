@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Grid, CircularProgress, Box, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 
@@ -6,10 +6,9 @@ import Post from "../Post/Post";
 import useStyles from "./styles";
 import { AppContext } from "../../App";
 
-const Posts = ({ setCurrentId }) => {
+const Posts = ({ setCurrentId, page }) => {
   const { posts } = useSelector((state) => state.posts);
   const classes = useStyles();
-  // const [showLoadingCircle, setShowLoadingCircle] = useState(true);
   const { showLoadingCircle, setShowLoadingCircle } = useContext(AppContext);
 
   const toRef = setTimeout(() => {
@@ -19,14 +18,7 @@ const Posts = ({ setCurrentId }) => {
 
   return !posts?.length ? (
     showLoadingCircle ? (
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
+      <Box className={classes.loadingContainer}>
         <CircularProgress sx={{ marginTop: "50px" }} />
         <Typography paddingTop={3}>
           Server needs a few seconds please wait ...
@@ -39,7 +31,7 @@ const Posts = ({ setCurrentId }) => {
     <Grid container className={classes.postsContainer} spacing={4}>
       {posts.map((post) => (
         <Grid key={post._id} item>
-          <Post post={post} setCurrentId={setCurrentId} />
+          <Post post={post} setCurrentId={setCurrentId} page={page} />
         </Grid>
       ))}
     </Grid>

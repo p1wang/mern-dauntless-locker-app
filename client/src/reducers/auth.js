@@ -1,6 +1,5 @@
 import { AUTH, LOGOUT } from "../constants/actionTypes";
 
-//initial state is an object
 const auth = (state = { authData: null }, action) => {
   switch (action.type) {
     case AUTH:

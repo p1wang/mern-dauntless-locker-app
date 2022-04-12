@@ -1,9 +1,7 @@
-import { Container, Grid, Grow, Box, Link, Paper } from "@mui/material";
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { Grid, Grow, Box, Link } from "@mui/material";
+import React, { useState } from "react";
 import Alert from "@mui/material/Alert";
 
-import { getPosts } from "../../actions/posts";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
 import Searchbar from "../Searchbar/Searchbar";
@@ -25,12 +23,7 @@ const Home = () => {
   const [showForm, setShowForm] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState([]);
-  const dispatch = useDispatch();
   const classes = useStyles();
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId, dispatch]);
 
   return (
     <Grid
@@ -85,7 +78,7 @@ const Home = () => {
       )}
       <Grow in timeout={800}>
         <Grid item margin={3}>
-          <Posts setCurrentId={setCurrentId} />
+          <Posts setCurrentId={setCurrentId} page={page} />
         </Grid>
       </Grow>
       {!searchQuery && <Paginate page={page} />}

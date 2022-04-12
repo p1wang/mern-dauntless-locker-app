@@ -17,23 +17,20 @@ export const getPosts = (page) => async (dispatch) => {
   }
 };
 
-export const createPost = (post, navigate) => async (dispatch) => {
+export const createPost = (post) => async (dispatch) => {
   try {
     const { data } = await api.createPost(post);
-
     dispatch({ type: CREATE, payload: data });
-    navigate("/");
   } catch (error) {
     console.log(error);
   }
 };
 
-export const deletePost = (id, navigate) => async (dispatch) => {
+export const deletePost = (id, page) => async (dispatch) => {
   try {
     await api.deletePost(id);
-
+    dispatch(getPosts(page));
     dispatch({ type: DELETE, payload: id });
-    navigate("/");
   } catch (error) {
     console.log(error);
   }

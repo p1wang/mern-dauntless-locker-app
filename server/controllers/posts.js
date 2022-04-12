@@ -82,23 +82,6 @@ export const getPosts = async (req, res) => {
   }
 };
 
-// searched posts
-export const getPostsBySearch = async (req, res) => {
-  const { searchQuery } = req.query;
-  try {
-    const posts = await PostMessage.find({
-      $or: [
-        { tags: new RegExp(searchQuery, "i") }, //convert document data into regular expression object
-        { title: new RegExp(searchQuery, "i") },
-      ],
-    }).sort({ _id: -1 });
-
-    res.status(200).json(posts);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
-
 // create post
 export const createPost = async (req, res) => {
   const post = req.body;
@@ -122,6 +105,23 @@ export const createPost = async (req, res) => {
     res.status(201).json(newPostMessage);
   } catch (error) {
     res.status(409).json({ message: error });
+  }
+};
+
+// searched posts
+export const getPostsBySearch = async (req, res) => {
+  const { searchQuery } = req.query;
+  try {
+    const posts = await PostMessage.find({
+      $or: [
+        { tags: new RegExp(searchQuery, "i") }, //convert document data into regular expression object
+        { title: new RegExp(searchQuery, "i") },
+      ],
+    }).sort({ _id: -1 });
+
+    res.status(200).json(posts);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
   }
 };
 

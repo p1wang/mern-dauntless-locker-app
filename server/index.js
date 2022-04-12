@@ -9,7 +9,6 @@ import userRoutes from "./routes/user.js";
 const app = express();
 dotenv.config();
 
-// Each app.use(middleware) is called every time a request is sent to the server.
 app.use(bodyParser.json({ limit: "50mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors());

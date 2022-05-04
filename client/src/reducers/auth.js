@@ -2,14 +2,15 @@ import { AUTH, LOGOUT } from "../constants/actionTypes";
 
 const auth = (state = { authData: null }, action) => {
   switch (action.type) {
-    case AUTH:
+    case AUTH: {
       localStorage.setItem("profile", JSON.stringify({ ...action?.payload }));
 
       return {
         ...state,
         authData: action.payload,
       };
-      
+    }
+
     case LOGOUT:
       localStorage.clear();
 

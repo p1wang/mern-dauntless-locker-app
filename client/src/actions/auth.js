@@ -21,6 +21,7 @@ export const signup = (formData, navigate) => async (dispatch) => {
 
     navigate("/");
   } catch (error) {
-    console.log(error);
+    console.log(error.response.data.message);
+    alert(error.response.data.message);
   }
 };

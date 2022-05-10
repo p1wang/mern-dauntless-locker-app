@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Auth from "./components/Auth/Auth";
 import Home from "./components/Home/Home";
@@ -26,18 +26,16 @@ const App = () => {
   return (
     <AppContext.Provider value={{ showLoadingCircle, setShowLoadingCircle }}>
       <ThemeProvider theme={theme}>
-        <HashRouter>
-          <Container maxWidth="false" disableGutters>
-            <Navbar />
-            <Routes>
-              <Route path="/" exact element={<Navigate to="posts" />} />
-              <Route path="/posts" exact element={<Home />} />
-              <Route path="/posts/search" exact element={<Home />} />
-              <Route path="/auth" exact element={<Auth />} />
-              <Route path="*" exact element={<Home />} />
-            </Routes>
-          </Container>
-        </HashRouter>
+        <Container maxWidth="false" disableGutters>
+          <Navbar />
+          <Routes>
+            <Route path="/" exact element={<Navigate to="posts" />} />
+            <Route path="/posts" exact element={<Home />} />
+            <Route path="/posts/search" exact element={<Home />} />
+            <Route path="/auth" exact element={<Auth />} />
+            <Route path="*" exact element={<Home />} />
+          </Routes>
+        </Container>
       </ThemeProvider>
     </AppContext.Provider>
   );
